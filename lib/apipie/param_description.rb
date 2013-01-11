@@ -8,7 +8,7 @@ module Apipie
   # validator - Validator::BaseValidator subclass
   class ParamDescription
 
-    attr_reader :name, :desc, :required, :format, :allow_nil, :validator
+    attr_reader :name, :desc, :required, :format, :default, :possible_options, :allow_nil, :validator, :eg
 
     attr_accessor :parent
 
@@ -32,7 +32,10 @@ module Apipie
         Apipie.configuration.required_by_default?
       end
       @allow_nil = options[:allow_nil] || false
-      @format = options[:format] || false
+      @format = options[:format] || nil
+      @default = options[:default] || nil
+      @possible_options = options[:possible_options] || nil
+      @eg = options[:eg] || nil
 
       @validator = nil
       unless validator.nil?
@@ -75,6 +78,9 @@ module Apipie
           :description => desc,
           :required => required,
           :format => format,
+          :possible_options => possible_options,
+          :default => default,
+          :eg => eg,
           :allow_nil => allow_nil,
           :validator => validator.to_s,
           :expected_type => validator.expected_type,
@@ -87,6 +93,9 @@ module Apipie
           :description => desc,
           :required => required,
           :format => format,
+          :possible_options => possible_options,
+          :default => default,
+          :eg => eg,
           :allow_nil => allow_nil,
           :validator => validator.to_s,
           :expected_type => validator.expected_type

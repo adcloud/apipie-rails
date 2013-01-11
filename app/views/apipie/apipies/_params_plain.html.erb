@@ -8,6 +8,12 @@
         <% if param[:validator] %>
           [ <%= param[:validator] %> ]
         <% end %>
+        <% if param[:default] %>
+          [ <%= param[:default] %> ]
+        <% end %>
+        <% if param[:format] %>
+          [ <%= param[:format] %> ]
+        <% end %>
       </small>
       <%= param[:description].html_safe %>
     </li>

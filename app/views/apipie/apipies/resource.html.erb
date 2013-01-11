@@ -61,11 +61,24 @@
         <% end %>
       <% end %>
 
+      
+      <h3>Examples</h3>
       <% unless m[:examples].blank? %>
-        <h3>Examples</h3>
         <% m[:examples].each do |example| %>
           <pre class="prettyprint"><%= example %></pre>
         <% end %>
+      <% else %>
+<pre class="prettyprint">
+curl -X <%= m[:apis][0][:http_method] %> <%= m[:apis][0][:api_url] %>?access_token={ACCESS_TOKEN}
+-H "Content-Type: application/json"
+-X <%= m[:apis][0][:http_method] %> -d '{
+<% m[:params].collect do |p| %>
+  <% if p[:required] == true and not p[:eg].blank? %>
+  "<%= p[:name] %>": <%= p[:eg] %>,
+  <% end %>
+<% end %>
+}'
+</pre>
       <% end %>
 
       <% unless m[:params].blank? %>

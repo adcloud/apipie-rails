@@ -5,20 +5,26 @@
     <td>
       <strong><%= param[:full_name] %> </strong><br>
       <small>
-        <%= param[:required] ? 'required' : 'optional' %>
+        <em><%= param[:required] ? '*required' : 'optional' %></em>
         <%= param[:allow_nil] ? ', nil allowed' : '' %>
       </small>
     </td>
     <td>
       <%= param[:description].html_safe %>
+      <small>
       <% unless param[:validator].blank? %>
-        <br>
-        Value: <%= param[:validator] %>
+        <b>value:</b> <%= param[:validator] %>
       <% end %>
-      <% unless param[:format] == false %>
-      <br>
-      Format: <%= param[:format] %>
+      <% unless param[:default].blank? %>
+          <br/><b>default:</b> <%= param[:default] %>
       <% end %>
+      <% unless param[:format].blank? %>
+          <br/><b>format:</b> <%= param[:format] %>
+      <% end %>
+      <% unless param[:possible_options].blank? %>
+          <br/><b>one of:</b> <%= param[:possible_options] %>
+      <% end %>
+      </small>
     </td>
   </tr>
 
