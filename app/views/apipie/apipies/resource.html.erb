@@ -68,7 +68,7 @@
           <pre class="prettyprint"><%= example %></pre>
         <% end %>
       <% else %>
-<pre class="prettyprint">
+<!-- <pre class="prettyprint">
 curl -X <%= m[:apis][0][:http_method] %> <%= m[:apis][0][:api_url] %>?access_token={ACCESS_TOKEN}
 -H "Content-Type: application/json"
 -X <%= m[:apis][0][:http_method] %> -d '{
@@ -78,7 +78,7 @@ curl -X <%= m[:apis][0][:http_method] %> <%= m[:apis][0][:api_url] %>?access_tok
   <% end %>
 <% end %>
 }'
-</pre>
+</pre> -->
       <% end %>
 
       <% unless m[:params].blank? %>

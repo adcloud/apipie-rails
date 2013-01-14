@@ -19,7 +19,8 @@ namespace :apipie do
   # By default OUT="#{Rails.root}/doc/apidoc"
   task :static => :environment do
     with_loaded_documentation do
-      out = ENV["OUT"] || File.join(::Rails.root, 'doc', 'apidoc')
+      target_dir = File.basename(Apipie.configuration.doc_base_url) or 'apidoc'
+      out = ENV["OUT"] || File.join(::Rails.root, 'doc', target_dir)
       subdir = File.basename(out)
 
       copy_jscss(out)
